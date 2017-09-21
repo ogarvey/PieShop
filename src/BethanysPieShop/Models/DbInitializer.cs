@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace BethanysPieShop.Models
         public static void Seed(IApplicationBuilder applicationBuilder)
         {
             AppDbContext context = applicationBuilder.ApplicationServices.GetRequiredService<AppDbContext>();
+
+            context.Database.Migrate();
 
             if (!context.Categories.Any())
             {
